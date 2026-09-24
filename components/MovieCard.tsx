@@ -1,9 +1,18 @@
 import Image from "next/image";
 import type { Movie } from "@/lib/movies";
 
-export default function MovieCard({ movie }: { movie: Movie }) {
+export default function MovieCard({
+  movie,
+  onSelect,
+}: {
+  movie: Movie;
+  onSelect: (movie: Movie) => void;
+}) {
   return (
-    <div className="group w-[220px] shrink-0 cursor-pointer snap-start transition-transform duration-200 hover:scale-105 sm:w-[240px]">
+    <button
+      onClick={() => onSelect(movie)}
+      className="group w-[220px] shrink-0 cursor-pointer snap-start text-left transition-transform duration-200 hover:scale-105 sm:w-[240px]"
+    >
       <div className="relative aspect-[2/3] overflow-hidden rounded-md">
         <Image
           src={movie.image}
@@ -20,6 +29,6 @@ export default function MovieCard({ movie }: { movie: Movie }) {
           </p>
         </div>
       </div>
-    </div>
+    </button>
   );
 }
